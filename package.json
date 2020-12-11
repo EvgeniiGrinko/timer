@@ -1,0 +1,30 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "timer.js",
+  "scripts": {
+    "build": "./node_modules/.bin/babel timer.jsx -o timer.js",
+    "copy-react": "copyfiles -f node_modules/react/dist/react.js ./",
+    "copy-react-dom": "copyfiles -f node_modules/react-dom/dist/react-dom.js ./",
+    "copy": "npm run copy-react && npm run copy-react-dom",
+    "start": "npm run copy && http-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  },
+  "dependencies": {
+    "copyfiles": "^2.4.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1"
+  }
+}
