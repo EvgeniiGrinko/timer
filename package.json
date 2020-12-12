@@ -4,7 +4,11 @@
   "description": "",
   "main": "timer.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel timer.jsx -o timer.js -w",
+    "build-timer-button": "./node_modules/.bin/babel timer-button.jsx -o timer-button.js",
+    "build-timer-sound": "./node_modules/.bin/babel timer-sound.jsx -o timer-sound.js",
+    "build-timer-label": "./node_modules/.bin/babel timer-label.jsx -o timer-label.js",
+    "build-timer": "./node_modules/.bin/babel timer.jsx -o timer.js",
+    "build": "npm run build-timer-button && npm run build-timer-sound && npm run build-timer-label && npm run build-timer",
     "copy-react": "copyfiles -f node_modules/react/dist/react.js ./",
     "copy-react-dom": "copyfiles -f node_modules/react-dom/dist/react-dom.js ./",
     "copy": "npm run copy-react && npm run copy-react-dom",
