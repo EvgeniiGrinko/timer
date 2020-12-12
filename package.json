@@ -4,7 +4,7 @@
   "description": "",
   "main": "timer.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel timer.jsx -o timer.js",
+    "build": "./node_modules/.bin/babel timer.jsx -o timer.js -w",
     "copy-react": "copyfiles -f node_modules/react/dist/react.js ./",
     "copy-react-dom": "copyfiles -f node_modules/react-dom/dist/react-dom.js ./",
     "copy": "npm run copy-react && npm run copy-react-dom",
