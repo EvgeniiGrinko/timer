@@ -17,7 +17,7 @@ class Button extends React.Component {
     render() {
         return (
             <button type="button" className="btn-default btn"
-            onClick={()=>{this.props.startTimer(this.props.time)}}>
+            onClick={()=>{this.props.startTimer(this.props.time, this.props.time)}}>
                 {this.props.time} seconds
                 </button>
         )
@@ -29,13 +29,16 @@ class TimerWrapper extends React.Component {
         super(props) 
         this.state = {
             timeLeft : null,
-            timer : null
+            timer : null,
+            selectedTime: null
         }
         this.startTimer = this.startTimer.bind(this)
         this.pause = this.pause.bind(this)
         this.resume = this.resume.bind(this)
+        this.cancel = this.cancel.bind(this)
+        this.reset = this.reset.bind(this)
     }
-    startTimer(timeLeft) {
+    startTimer(timeLeft, originalTime) {
         
         document.getElementById('end-of-time').load()
         clearInterval(this.state.timer)
@@ -47,7 +50,8 @@ class TimerWrapper extends React.Component {
             this.setState({timeLeft:timeLeft})
             
         }, 1000)
-        return this.setState({timeLeft: timeLeft, timer: timer})
+        let selectedTime = originalTime ? originalTime : this.state.selectedTime
+        return this.setState({timeLeft: timeLeft, timer: timer, selectedTime: selectedTime})
     }
     pause() {
         clearInterval(this.state.timer)
@@ -58,6 +62,17 @@ class TimerWrapper extends React.Component {
         if(this.state.timeLeft > 0){
         this.startTimer(this.state.timeLeft)
     }
+    }
+    cancel() {
+        clearInterval(this.state.timer)
+        this.setState({
+        timer: null,
+        timeLeft: null
+    })
+    
+    }
+    reset() {
+        this.startTimer(this.state.selectedTime)
     }
     
     render() {
@@ -80,8 +95,8 @@ class TimerWrapper extends React.Component {
               
                 <button  type="button" className="btn-default btn" onClick={this.pause}>Pause</button>
             }
-            <button className="btn-danger btn" onClick={this.cancelTimer}>Cancel</button>
-            <button className="btn-primary btn" onClick={this.resetTimer}>Reset</button>
+            <button className="btn-danger btn" onClick={this.cancel}>Cancel</button>
+            <button className="btn-primary btn" onClick={this.reset}>Reset</button>
           </div>
         </div>
         }</Timer>
